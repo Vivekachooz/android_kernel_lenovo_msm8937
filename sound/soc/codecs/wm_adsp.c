@@ -378,7 +378,7 @@ static int wm_coeff_write_control(struct snd_kcontrol *kcontrol,
 	const struct wm_adsp_region *mem;
 	struct wm_adsp *adsp = ctl->adsp;
 	void *scratch;
-	int ret;
+	int ret = 0;
 	unsigned int reg;
 
 	mem = wm_adsp_find_region(adsp, region->type);
@@ -434,7 +434,7 @@ static int wm_coeff_read_control(struct snd_kcontrol *kcontrol,
 	const struct wm_adsp_region *mem;
 	struct wm_adsp *adsp = ctl->adsp;
 	void *scratch;
-	int ret;
+	int ret = 0;
 	unsigned int reg;
 
 	mem = wm_adsp_find_region(adsp, region->type);
