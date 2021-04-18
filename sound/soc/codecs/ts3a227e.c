@@ -367,7 +367,7 @@ static int  ts3a227e_auto_detect(void)
     if (!ts3a_chip)
         return -1;
 
-	reinit_completion(&ts3a_chip->detect_compl);
+reinit_completion(&ts3a_chip->detect_compl);
     ts3a227e_update_bits(ts3a_chip->i2c, TS3A227E_REG_SETTING_1,
         MANUAL_SWITCH_CONTROL|DET_TRIGGER, DET_TRIGGER);
 
@@ -396,8 +396,8 @@ int karate_hp_switch_set(bool enable, int user)
     if (!ts3a_chip)
         return -1;
 
-	if (user)
-	    ts3a_chip->hp_switch = enable;
+	    if (user)
+	        ts3a_chip->hp_switch = enable;
 	if (enable)
 		pinctrl_select_state(ts3a_chip->pincrl, ts3a_chip->pin_state_on);
 	else
