@@ -364,12 +364,12 @@ static int  ts3a227e_auto_detect(void)
     unsigned long rc;
 
     pr_debug("%s:\n", __func__);
-    if (!ts3a_chip)
+    if (!ts3a_chip) {
         return -1;
-
 	reinit_completion(&ts3a_chip->detect_compl);
     ts3a227e_update_bits(ts3a_chip->i2c, TS3A227E_REG_SETTING_1,
         MANUAL_SWITCH_CONTROL|DET_TRIGGER, DET_TRIGGER);
+}
 
     pr_debug("%s: wait for interrupt\n", __func__);
 	rc = wait_for_completion_timeout(&ts3a_chip->detect_compl,
@@ -393,11 +393,11 @@ static int  ts3a227e_auto_detect(void)
 int karate_hp_switch_set(bool enable, int user)
 {
     pr_info("%s: enable: %d\n", __func__, enable);
-    if (!ts3a_chip)
+    if (!ts3a_chip) {
         return -1;
-
 	if (user)
 	    ts3a_chip->hp_switch = enable;
+}
 	if (enable)
 		pinctrl_select_state(ts3a_chip->pincrl, ts3a_chip->pin_state_on);
 	else
